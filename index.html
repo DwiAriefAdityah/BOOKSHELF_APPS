@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOKSHELF APP</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>BOOKSHELF APPS by <span> DWI ARIEF ADITYAH </span></h1>
+        <div class="search">
+            <input type="text" id="search" name="title" placeholder="Search">
+        </div>
+    </header>
+    <main>
+        <div class="sedang-dibaca" >
+            <h2>SEDANG DIBACA</h2>
+            <div class="wraper" id="wraper-sedangBaca">
+                <div class="box">
+                    <h3>HARRY POTTER</h3>
+                    <p>Richard Pardomuan</p>
+                    <div class="aksi-box">
+                        <h4>1990</h4>
+                        <i class="fas fa-trash-alt"></i>
+                    </div>
+                </div>
+
+                
+            </div>
+            <div class="box-tambah" id="tambah">
+                <i class=" tambah fas fa-plus-circle"></i>
+            </div>
+
+        </div>
+
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <form class="form" action="#" id="form">
+                    <div class="form-group form-title">
+                        <label for="title">Judul Buku</label>
+                        <input type="text" id="title" name="title" required>
+                    </div>
+                    <div class="form-group form-title">
+                        <label for="pengarang">Pengarang Buku</label>
+                        <input type="text" id="pengarang" name="pengarang" required>
+                    </div>
+                    <div class="form-group form-title">
+                        <label for="date">Tahun Terbit</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    <input type="submit" value="Submit" name="Submit" class="btn-submit form-group">
+                </form>
+            </div>
+        </div>
+
+        <div class="selesai-dibaca">
+            <h2>SELESAI DIBACA</h2>
+            <div class="wraper" >
+                <div class="box">
+                    <h3>HARRY POTTER</h3>
+                    <p>Richard Pardomuan</p>
+                    <div class="aksi-box">
+                        <h4>1990</h4>
+                        <i class="fas fa-trash-alt"></i>
+                        <i class="fas fa-undo-alt"></i>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+    <footer>
+        <h2>Make with <span>LOVE</span></h2>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/dom.js"></script>
+    <script src="js/script.js"></script>
+    <script src="https://kit.fontawesome.com/271c279b41.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
