@@ -54,14 +54,14 @@ function refreshDataFromdatas() {
 	// let listCompleted = document.getElementById(COMPLETED_LIST_TODO_ID);
 
 	for (data of datas) {
-		let newData = buatData(data.title, data.pengarang, data.date, data.isCompleted);
+		const newData = buatData(data.title, data.pengarang, data.date, data.isCompleted);
 		// newData[DATA_ITEMID] = data.id;
 
 		if (data.isCompleted) {
 			// listCompleted.append(newData);
 			alert("SALAH");
 		} else {
-			listUncompleted.append(newData);
+			newData;
 			// alert("Masuk");
 		}
 	}
@@ -74,6 +74,7 @@ function loadDataFromStorage() {
 
 	if (data !== null)
 		datas = data;
+		console.log("datas terisi");
 
 	document.dispatchEvent(new Event("ondataloaded"));
 }
