@@ -18,12 +18,7 @@ span{
 }
 
 .search{
-    display: flex;
-    flex-direction: row-reverse;
-}
-
-.search input{
-    width: 20%;
+	width: 100%;
     height: 1.5rem;
     border-radius: 6px;
     border-style: none;
@@ -79,20 +74,34 @@ main{
 .wraper{
     display: flex;
 }
+
 .aksi-box{
     display: flex;
     justify-content: flex-end;
     margin-top: 1em;
 }
 
-.box i{
+.aksi-box i{
     margin-left: 1em;
+	color: wheat;
 }
 
-.box-tambah{
-    /* background-color: cadetblue; */
-    box-shadow: none;
-    margin-top: 3em;   
+.aksi-box i:hover{
+	font-size: large;
+	cursor: pointer;
+	color: white
+}
+
+.box-keterangan{
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 1em;
+	width: 30%; 
+	padding: 1em;
+}
+
+.box-keterangan i{
+	font-size: 2em;
+	margin-top: 1em;
 }
 
 .wrap-box{
@@ -100,8 +109,6 @@ main{
 }
 
 .tambah{
-    font-size: 3rem;
-    padding: 0.5em;
     cursor: pointer;
 }
 
