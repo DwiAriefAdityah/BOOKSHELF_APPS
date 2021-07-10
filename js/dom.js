@@ -2,76 +2,78 @@ const UNCOMPLETED_LIST_DATA_ID = "wraper-sedangBaca";
 const DATA_ITEMID = "itemId";
 
 
-function tambahData(){
-    const uncompletedDATAList = document.getElementById(UNCOMPLETED_LIST_DATA_ID);
+function tambahData() {
+	// const uncompletedDATAList = document.getElementById(UNCOMPLETED_LIST_DATA_ID);
 
-    const title = document.getElementById("title").value;
-    const pengarang = document.getElementById("pengarang").value;
-    const date = document.getElementById("date").value;
+	const title = document.getElementById("title").value;
+	const pengarang = document.getElementById("pengarang").value;
+	const date = document.getElementById("date").value;
 
-    const data = buatData(title, pengarang, date, false); //bermasalah
-    const dataObject = composeDataObject(title, pengarang, date, false);
+	const data = buatData(title, pengarang, date, false); //bermasalah
+	const dataObject = composeDataObject(title, pengarang, date, false);
 
-    data[DATA_ITEMID] = dataObject.id;
-    datas.push(dataObject);
+	// data[DATA_ITEMID] = dataObject.id;
+	datas.push(dataObject);
 
-    // uncompletedTODOList.append(todo);
+	// uncompletedTODOList.append(todo);
 
-    alert("Data Masuk");
-    // window.location.reload(false);
+	alert("Data Masuk");
+	// window.location.reload(false);
 
-    updateDataToStorage();
+	updateDataToStorage();
 }
 
-function buatData(title, pengarang, date, isCompleted){
-    const iLogo = document.createElement("i");
-    iLogo.classList.add("fas", "fa-trash-alt");
+function buatData(title, pengarang, date, isCompleted) {
+	const contentList = document.getElementById(UNCOMPLETED_LIST_DATA_ID);
 
-    const textDate = document.createElement("h4");
-    textDate.innerText = date;
+	if (isCompleted == false) {
+		console.log("OK")
+	}
 
-    const textContainer = document.createElement("div");
-    textContainer.classList.add("aksi-box");
-    textContainer.append(iLogo, textDate);
+	const textTitle = document.createElement("h3");
+	textTitle.innerText = title;
+	
+	const ilogo = document.createElement("i");
+	ilogo.classList.add("fas" ,"fa-trash-alt");
 
-    // const aksiBox = textContainer.append(iLogo, textDate);
+	const textp = document.createElement("p");
+	textp.innerText = pengarang;
 
-    const textp = document.createElement("p");
-    textp.innerText = pengarang;
+	const textDate = document.createElement("h4");
+	textDate.innerText = date;
 
-    const textTitle = document.createElement("h3");
-    textTitle.innerText = title;
+	const textBox = document.createElement("div");
+	textBox.classList.add("box");
+	textBox.append(textTitle, textp, textDate, ilogo);
 
-    const textBox = document.createElement("div");
-    textBox.classList.add("box");
-    textBox.append(textContainer, textp, textTitle);
+	contentList.appendChild(textBox);
 }
 
-function refreshDataFromdatas(){
-    const listUncompleted = document.getElementById(UNCOMPLETED_LIST_DATA_ID);
-    // let listCompleted = document.getElementById(COMPLETED_LIST_TODO_ID);
+function refreshDataFromdatas() {
+	const listUncompleted = document.getElementById(UNCOMPLETED_LIST_DATA_ID);
+	// let listCompleted = document.getElementById(COMPLETED_LIST_TODO_ID);
 
-    for(data of datas){
-        const newData = buatData(data.title, data.pengarang, data.date, data.isCompleted);
-        newData[DATA_ITEMID] = data.id;
+	for (data of datas) {
+		let newData = buatData(data.title, data.pengarang, data.date, data.isCompleted);
+		// newData[DATA_ITEMID] = data.id;
 
-        if(data.isCompleted){
-            // listCompleted.append(newData);
-            alert("SALAH");
-        } else {
-            listUncompleted.append(newData);
-            alert("Masuk");
-        }
-    }
+		if (data.isCompleted) {
+			// listCompleted.append(newData);
+			alert("SALAH");
+		} else {
+			listUncompleted.append(newData);
+			// alert("Masuk");
+		}
+	}
 }
 
 function loadDataFromStorage() {
-    const serializedData /* string */ = localStorage.getItem(STORAGE_KEY);
-    
-    let data = JSON.parse(serializedData);
-    
-    if(data !== null)
-        datas = data;
+	const serializedData /* string */ = localStorage.getItem(STORAGE_KEY);
 
-    document.dispatchEvent(new Event("ondataloaded"));
+	let data = JSON.parse(serializedData);
+
+	if (data !== null)
+		datas = data;
+
+	document.dispatchEvent(new Event("ondataloaded"));
 }

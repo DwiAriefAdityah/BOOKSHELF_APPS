@@ -78,9 +78,8 @@ main{
     display: flex;
 }
 
-.aksi-box .fa-trash-alt{
-    margin-left: 4.5em;
-    margin-right: 0.5em;
+.box .fa-trash-alt{
+    margin: 1rem;
 }
 
 .box-tambah{

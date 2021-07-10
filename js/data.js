@@ -4,7 +4,7 @@ let datas = [];
 
 function composeDataObject(title, pengarang, date, isCompleted) {
     return {
-        id: +new Date(),
+        // id: +new Date(),
         title,
         pengarang,
         date,
