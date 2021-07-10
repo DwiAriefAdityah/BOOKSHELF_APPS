@@ -1,30 +1,24 @@
 const UNCOMPLETED_LIST_DATA_ID = "wraper-sedangBaca";
+const COMPLETED_LIST_DATA_ID = "wraper-selesaiBaca";
 const DATA_ITEMID = "itemId";
 
-
 function tambahData() {
-	// const uncompletedDATAList = document.getElementById(UNCOMPLETED_LIST_DATA_ID);
-
 	const title = document.getElementById("title").value;
 	const pengarang = document.getElementById("pengarang").value;
 	const date = document.getElementById("date").value;
 
-	const data = buatData(title, pengarang, date, false); //bermasalah
+	const data = buatData(title, pengarang, date, false);
 	const dataObject = composeDataObject(title, pengarang, date, false);
 
-	// data[DATA_ITEMID] = dataObject.id;
 	datas.push(dataObject);
 
-	// uncompletedTODOList.append(todo);
-
-	alert("Data Masuk");
-	// window.location.reload(false);
-
+	alert("Berhasil Menambah BUKU");
+	
 	updateDataToStorage();
 }
 
-function buatData(title, pengarang, date, isCompleted) {
-	const contentList = document.getElementById(UNCOMPLETED_LIST_DATA_ID);
+function buatData(id, title, pengarang, date, isCompleted) {
+	// const contentList = document.getElementById(UNCOMPLETED_LIST_DATA_ID);
 
 	const textTitle = document.createElement("h3");
 	textTitle.innerText = title;
@@ -35,11 +29,18 @@ function buatData(title, pengarang, date, isCompleted) {
 	const ilogoThumbtack = document.createElement("i");
 	ilogoThumbtack.classList.add("fas" ,"fa-thumbtack");
 
+	const ilogoUndo = document.createElement("i");
+	ilogoUndo.classList.add("fas", "fa-undo-alt");
+
 	const logoBox = document.createElement("div");
 	logoBox.classList.add("aksi-box");
+
 	if (isCompleted == false) {
 		logoBox.append(ilogoThumbtack);
+	}else{
+		logoBox.append(ilogoUndo);
 	}
+
 	logoBox.append(ilogoTrash);
 
 	const textp = document.createElement("p");
@@ -52,23 +53,27 @@ function buatData(title, pengarang, date, isCompleted) {
 	textBox.classList.add("box");
 	textBox.append(textTitle, textp, textDate, logoBox);
 
-	contentList.appendChild(textBox);
+	return textBox;
+
+	// contentList.appendChild(textBox);
 }
 
 function refreshDataFromdatas() {
 	const listUncompleted = document.getElementById(UNCOMPLETED_LIST_DATA_ID);
-	// let listCompleted = document.getElementById(COMPLETED_LIST_TODO_ID);
+	const listCompleted = document.getElementById(COMPLETED_LIST_DATA_ID);
 
 	for (data of datas) {
-		const newData = buatData(data.title, data.pengarang, data.date, data.isCompleted);
+		const newData = buatData(data.id, data.title, data.pengarang, data.date, data.isCompleted);
 		// newData[DATA_ITEMID] = data.id;
 
 		if (data.isCompleted) {
-			// listCompleted.append(newData);
-			alert("SALAH");
+			listCompleted.append(newData);
+			// listCompleted.newData;
+			// alert("Benar");
 		} else {
-			newData;
-			// alert("Masuk");
+			listUncompleted.append(newData);
+			// listUncompleted.newData;
+			// alert(data.isCompleted);
 		}
 	}
 }

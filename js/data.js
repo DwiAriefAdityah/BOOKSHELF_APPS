@@ -3,8 +3,9 @@ const STORAGE_KEY = "BOOKSHELF_APPS";
 let datas = [];
 
 function composeDataObject(title, pengarang, date, isCompleted) {
+    // window.location.reload(false);
     return {
-        // id: +new Date(),
+        id: +new Date(),
         title,
         pengarang,
         date,

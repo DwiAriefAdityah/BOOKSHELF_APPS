@@ -10,7 +10,7 @@ if (checkForStorage()) {
     const modal = document.getElementById("myModal");
 
     tambah.addEventListener("click", function (ev) {
-        console.log("OK");
+        // console.log("OK");
         modal.style.display = "block";
     });
 
