@@ -23,25 +23,30 @@ function buatData(id, title, pengarang, date, isCompleted) {
 	const textTitle = document.createElement("h3");
 	textTitle.innerText = title;
 	
-	const ilogoTrash = document.createElement("i");
-	ilogoTrash.classList.add("fas" ,"fa-trash-alt");
+	
 
-	const ilogoThumbtack = document.createElement("i");
-	ilogoThumbtack.classList.add("fas" ,"fa-thumbtack");
-
-	const ilogoUndo = document.createElement("i");
-	ilogoUndo.classList.add("fas", "fa-undo-alt");
+	
 
 	const logoBox = document.createElement("div");
 	logoBox.classList.add("aksi-box");
 
 	if (isCompleted == false) {
-		logoBox.append(ilogoThumbtack);
+		
+		logoBox.append(
+			createThumbtackButton(),
+			createTrashButton()
+		);
+		// logoBox.append(ilogoThumbtack);
 	}else{
-		logoBox.append(ilogoUndo);
+		logoBox.append(
+			createUndoButton(),
+			createTrashButton()
+		);
+		console.log("UNDO MASUK");
+		// logoBox.append(ilogoUndo);
 	}
 
-	logoBox.append(ilogoTrash);
+	// logoBox.append(ilogoTrash);
 
 	const textp = document.createElement("p");
 	textp.innerText = pengarang;
@@ -56,6 +61,47 @@ function buatData(id, title, pengarang, date, isCompleted) {
 	return textBox;
 
 	// contentList.appendChild(textBox);
+}
+
+function createUndoButton() {
+	const ilogoUndo = "fa-undo-alt";
+	
+    return createButton(ilogoUndo, function (event) {
+        // undoTaskFromCompleted(event.target.parentElement);
+    });
+}
+
+function createTrashButton() {
+	const ilogoTrash = "fa-trash-alt";
+	
+    return createButton(ilogoTrash, function (event) {
+        // removeTaskFromCompleted(event.target.parentElement);
+    });
+}
+
+function createThumbtackButton() {
+	// console.log("Tumbtack Created");
+	// const ilogoThumbtack = document.createElement("i");
+	const ilogoThumbtack = "fa-thumbtack"; 
+	return createButton(ilogoThumbtack);
+    // return createButton( ilogoThumbtack ,function (event) {
+    //     // addTaskToCompleted(event.target.parentElement);
+	// 	alert("thumtack clicked");
+    // });
+}
+
+function createButton(buttonTypeClass /* string , eventListener /* Event */) {
+    const button = document.createElement("i");
+	button.classList.add("fas");
+	button.classList.add(buttonTypeClass);
+    // button.classList.add("fas" +buttonTypeClass);
+    // button.addEventListener("click", function (event) {
+    //     eventListener(event);
+    //     event.stopPropagation();
+    // });
+	
+    return button;
+	
 }
 
 function refreshDataFromdatas() {
