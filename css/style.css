@@ -111,8 +111,14 @@ main{
     display: flex;
 }
 
-.tambah{
+#tambah{
     cursor: pointer;
+}
+
+.spanTambah{
+    color: white;
+    background-color: black;
+    margin-left: 2em;
 }
 
 /* The Modal (background) */

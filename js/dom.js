@@ -7,7 +7,6 @@ function tambahData() {
 	const pengarang = document.getElementById("pengarang").value;
 	const date = document.getElementById("date").value;
 
-	// const data = buatData(title, pengarang, date, false);
 	const dataObject = composeDataObject(title, pengarang, date, false);
 
 	datas.push(dataObject);
@@ -18,7 +17,6 @@ function tambahData() {
 }
 
 function buatData(id, title, pengarang, date, isCompleted) {
-	// const contentList = document.getElementById(UNCOMPLETED_LIST_DATA_ID);
 	const dataid = id;
 
 	const textTitle = document.createElement("h3");
@@ -132,7 +130,7 @@ function removeTaskFromCompleted(id) {
 }
 
 function loadDataFromStorage() {
-	const serializedData /* string */ = localStorage.getItem(STORAGE_KEY);
+	const serializedData = localStorage.getItem(STORAGE_KEY);
 
 	let data = JSON.parse(serializedData);
 

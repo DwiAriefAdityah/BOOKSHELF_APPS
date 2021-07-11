@@ -9,9 +9,16 @@ if (checkForStorage()) {
     const tambah = document.getElementById("tambah");
     const modal = document.getElementById("myModal");
 
+   
+
     tambah.addEventListener("click", function (ev) {
-        // console.log("OK");
-        modal.style.display = "block";
+        if (datas.length < 10) {
+            modal.style.display = "block";
+        }else{
+            alert("Mencapaik Maksimal Buku Bacaan, Kamu Hanya dapat Membaca 10 Buku");
+        }
+        // // console.log("OK");
+        // modal.style.display = "block";
     });
 
     const span = document.getElementsByClassName("close")[0];
@@ -33,14 +40,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const submitForm /* HTMLFormElement */ = document.getElementById("form");
 
     submitForm.addEventListener("submit", function (event) {
-        tambahData();
+        
+            tambahData();
+       
     });
 
     loadDataFromStorage();
+    
 
 });
 
 document.addEventListener("ondataloaded", () => {
     refreshDataFromdatas();
 });
-
