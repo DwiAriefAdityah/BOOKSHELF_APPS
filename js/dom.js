@@ -1,13 +1,13 @@
 const UNCOMPLETED_LIST_DATA_ID = "wraper-sedangBaca";
 const COMPLETED_LIST_DATA_ID = "wraper-selesaiBaca";
-const DATA_ITEMID = "itemId";
+// const DATA_ITEMID = "itemId";
 
 function tambahData() {
 	const title = document.getElementById("title").value;
 	const pengarang = document.getElementById("pengarang").value;
 	const date = document.getElementById("date").value;
 
-	const data = buatData(title, pengarang, date, false);
+	// const data = buatData(title, pengarang, date, false);
 	const dataObject = composeDataObject(title, pengarang, date, false);
 
 	datas.push(dataObject);
@@ -19,34 +19,25 @@ function tambahData() {
 
 function buatData(id, title, pengarang, date, isCompleted) {
 	// const contentList = document.getElementById(UNCOMPLETED_LIST_DATA_ID);
+	const dataid = id;
 
 	const textTitle = document.createElement("h3");
 	textTitle.innerText = title;
 	
-	
-
-	
-
 	const logoBox = document.createElement("div");
 	logoBox.classList.add("aksi-box");
 
-	if (isCompleted == false) {
-		
+	if (isCompleted == false) {	
 		logoBox.append(
-			createThumbtackButton(),
-			createTrashButton()
+			createThumbtackButton(dataid),
+			createTrashButton(dataid)
 		);
-		// logoBox.append(ilogoThumbtack);
 	}else{
 		logoBox.append(
-			createUndoButton(),
-			createTrashButton()
+			createUndoButton(dataid),
+			createTrashButton(dataid)
 		);
-		console.log("UNDO MASUK");
-		// logoBox.append(ilogoUndo);
 	}
-
-	// logoBox.append(ilogoTrash);
 
 	const textp = document.createElement("p");
 	textp.innerText = pengarang;
@@ -59,49 +50,40 @@ function buatData(id, title, pengarang, date, isCompleted) {
 	textBox.append(textTitle, textp, textDate, logoBox);
 
 	return textBox;
-
-	// contentList.appendChild(textBox);
 }
 
-function createUndoButton() {
+function createUndoButton(id) {
 	const ilogoUndo = "fa-undo-alt";
 	
     return createButton(ilogoUndo, function (event) {
-        // undoTaskFromCompleted(event.target.parentElement);
+        undoTaskFromCompleted(id);
     });
 }
 
-function createTrashButton() {
+function createTrashButton(id) {
 	const ilogoTrash = "fa-trash-alt";
-	
     return createButton(ilogoTrash, function (event) {
-        // removeTaskFromCompleted(event.target.parentElement);
+        removeTaskFromCompleted(id);
     });
 }
 
-function createThumbtackButton() {
-	// console.log("Tumbtack Created");
-	// const ilogoThumbtack = document.createElement("i");
+function createThumbtackButton(id) {
 	const ilogoThumbtack = "fa-thumbtack"; 
-	return createButton(ilogoThumbtack);
-    // return createButton( ilogoThumbtack ,function (event) {
-    //     // addTaskToCompleted(event.target.parentElement);
-	// 	alert("thumtack clicked");
-    // });
+    return createButton( ilogoThumbtack ,function (event) {
+        addTaskToCompleted(id);
+    });
 }
 
-function createButton(buttonTypeClass /* string , eventListener /* Event */) {
+function createButton(buttonTypeClass /* string */, eventListener /* Event */) {
     const button = document.createElement("i");
 	button.classList.add("fas");
 	button.classList.add(buttonTypeClass);
-    // button.classList.add("fas" +buttonTypeClass);
-    // button.addEventListener("click", function (event) {
-    //     eventListener(event);
-    //     event.stopPropagation();
-    // });
+    button.addEventListener("click", function (event) {
+        eventListener(event);
+        event.stopPropagation();
+    });
 	
     return button;
-	
 }
 
 function refreshDataFromdatas() {
@@ -110,18 +92,43 @@ function refreshDataFromdatas() {
 
 	for (data of datas) {
 		const newData = buatData(data.id, data.title, data.pengarang, data.date, data.isCompleted);
-		// newData[DATA_ITEMID] = data.id;
 
 		if (data.isCompleted) {
 			listCompleted.append(newData);
-			// listCompleted.newData;
-			// alert("Benar");
 		} else {
 			listUncompleted.append(newData);
-			// listUncompleted.newData;
-			// alert(data.isCompleted);
 		}
 	}
+}
+
+function addTaskToCompleted(id) {
+    const data = findData(id);
+	if (data.isCompleted == false) {
+		data.isCompleted = true;
+		updateDataToStorage();
+		alert("Buku Telah Selesai di Baca");
+		window.location.reload(true);
+	}
+}
+
+function undoTaskFromCompleted(id) {
+	const data = findData(id);
+	if (data.isCompleted == true) {
+		data.isCompleted = false;
+		updateDataToStorage();
+		alert("Mengembalikan ke List Sedang Baca");
+		window.location.reload(true);
+	}
+}
+
+function removeTaskFromCompleted(id) {
+    // const data = findData(id);
+	const dataIndex = findDataIndex(id);
+	
+    datas.splice(dataIndex, 1);
+	alert("Berhasil Menghapus Buku");
+    updateDataToStorage();
+	window.location.reload(true);
 }
 
 function loadDataFromStorage() {
