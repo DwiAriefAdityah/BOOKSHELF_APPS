@@ -5,20 +5,17 @@ function checkForStorage() {
 }
 
 if (checkForStorage()) {
-    // alert("berhasil masuk");
     const tambah = document.getElementById("tambah");
     const modal = document.getElementById("myModal");
 
-   
-
     tambah.addEventListener("click", function (ev) {
         if (datas.length < 10) {
+            const titleModal = document.getElementById("titleModal");
+	        titleModal.innerText="Tambah Buku";
             modal.style.display = "block";
         }else{
             alert("Mencapaik Maksimal Buku Bacaan, Kamu Hanya dapat Membaca 10 Buku");
         }
-        // // console.log("OK");
-        // modal.style.display = "block";
     });
 
     const span = document.getElementsByClassName("close")[0];
@@ -26,28 +23,22 @@ if (checkForStorage()) {
         modal.style.display = "none";
     }
 
-    // When the user clicks anywhere outside of the modal, close it
     window.onclick = function (event) {
         if (event.target == modal) {
-            modal.style.display = "none";
+            modal.style.display = "none";        
         }
     }
-
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-
     const submitForm /* HTMLFormElement */ = document.getElementById("form");
-
     submitForm.addEventListener("submit", function (event) {
-        
-            tambahData();
-       
+        tambahData();
     });
-
     loadDataFromStorage();
     
-
+    const totalBaca = document.getElementById("totalBaca");
+    totalBaca.innerText = "Total Data " +datas.length+ " / 10";
 });
 
 document.addEventListener("ondataloaded", () => {

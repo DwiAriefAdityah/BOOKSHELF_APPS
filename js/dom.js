@@ -1,6 +1,5 @@
 const UNCOMPLETED_LIST_DATA_ID = "wraper-sedangBaca";
 const COMPLETED_LIST_DATA_ID = "wraper-selesaiBaca";
-// const DATA_ITEMID = "itemId";
 
 function tambahData() {
 	const title = document.getElementById("title").value;
@@ -100,11 +99,11 @@ function refreshDataFromdatas() {
 }
 
 function addTaskToCompleted(id) {
-    const data = findData(id);
+	const data = findData(id);
 	if (data.isCompleted == false) {
 		data.isCompleted = true;
 		updateDataToStorage();
-		alert("Buku Telah Selesai di Baca");
+		alert("Buku Selesai di Baca");
 		window.location.reload(true);
 	}
 }
@@ -120,7 +119,6 @@ function undoTaskFromCompleted(id) {
 }
 
 function removeTaskFromCompleted(id) {
-    // const data = findData(id);
 	const dataIndex = findDataIndex(id);
 	
     datas.splice(dataIndex, 1);

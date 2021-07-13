@@ -136,11 +136,16 @@ main{
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
   
-  /* Modal Content */
+  #titleModal{
+      margin-top: 1em;
+      margin-bottom: 0;
+      text-align: center;
+  }
+
   .modal-content {
     background-color: #fefefe;
     margin: auto;
-    padding: 20px;
+    padding: 1em;
     border-radius: 5px;
     width: 30%;
   }
